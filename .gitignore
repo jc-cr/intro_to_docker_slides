@@ -12,7 +12,7 @@
 
 # Output directory (except .gitkeep)
 output/*
-!output/.gitkeep
+!output/main.pdf
 
 # TeX Live data
 texmf-data/
