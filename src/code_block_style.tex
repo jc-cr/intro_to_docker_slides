@@ -1,0 +1,38 @@
+
+% Set up global style for listings
+\lstset{
+    basicstyle=\tiny\ttfamily,
+    backgroundcolor=\color{codebackground},
+    frame=single,
+    rulecolor=\color{codeborder},
+    framesep=4pt,
+    breaklines=true,
+    breakatwhitespace=true,
+    showstringspaces=false,
+    columns=flexible,
+    keepspaces=true,
+    numbers=none,  % Remove line numbers
+    xleftmargin=5pt,  % Reduced left margin since we removed numbers
+    captionpos=b
+}
+
+% Custom style for Docker-related files
+\lstdefinestyle{docker}{
+    keywords={FROM, RUN, CMD, LABEL, MAINTAINER, EXPOSE, ENV, ADD, COPY, ENTRYPOINT, VOLUME, USER, WORKDIR, ARG, ONBUILD, STOPSIGNAL, HEALTHCHECK, SHELL},
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{green!60!black}\itshape,
+    stringstyle=\color{red!60!black}
+}
+
+% Custom style for YAML files
+\lstdefinestyle{yaml}{
+    keywords={true,false,null,y,n},
+    keywordstyle=\color{blue}\bfseries,
+    basicstyle=\tiny\ttfamily,
+    stringstyle=\color{red!60!black},
+    morestring=[s]{"}{"},
+    morestring=[s]{'}{'},
+    morecomment=[l]{\#},
+    commentstyle=\color{green!60!black}\itshape,
+    tabsize=2
+}

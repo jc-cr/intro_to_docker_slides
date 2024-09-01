@@ -1,0 +1,35 @@
+% Color definitions
+\definecolor{progress_bar_color_current}{HTML}{8BC53F}  % Current section (was mygreen)
+\definecolor{progress_bar_color_reached}{HTML}{57AED1}  % Reached sections (was myblue)
+\definecolor{progress_bar_color_unreached}{HTML}{DDDDDD}  % Unreached sections (was mygray)
+
+% Code block colors
+% Define colors for the listings
+\definecolor{codebackground}{RGB}{248,248,248}
+\definecolor{codeborder}{RGB}{204,204,204}
+
+% Slide colors
+\definecolor{text_color_primary}{HTML}{333333}  % Main text color
+\definecolor{text_color_secondary}{HTML}{666666}  % Secondary text color
+\definecolor{heading_color_primary}{HTML}{1C4587}  % Main heading color
+\definecolor{heading_color_secondary}{HTML}{3C78D8}  % Secondary heading color
+\definecolor{background_color_primary}{HTML}{FFFFFF}  % Main background color
+\definecolor{background_color_secondary}{HTML}{F3F3F3}  % Secondary background color
+\definecolor{accent_color}{HTML}{FF9900}  % Accent color for highlights
+
+% Update Beamer color theme
+\setbeamercolor{normal text}{fg=text_color_primary, bg=background_color_primary}
+\setbeamercolor{alerted text}{fg=accent_color}
+\setbeamercolor{example text}{fg=progress_bar_color_current}
+
+\setbeamercolor{structure}{fg=heading_color_primary}
+
+\setbeamercolor{background canvas}{bg=background_color_primary}
+\setbeamercolor{background}{bg=background_color_secondary}
+
+\setbeamercolor{palette primary}{fg=text_color_primary, bg=background_color_secondary}
+\setbeamercolor{palette secondary}{fg=text_color_secondary, bg=background_color_primary}
+\setbeamercolor{palette tertiary}{fg=heading_color_secondary, bg=background_color_primary}
+
+\setbeamercolor{frametitle}{fg=heading_color_primary, bg=background_color_primary}
+\setbeamercolor{title}{fg=heading_color_primary, bg=background_color_primary}

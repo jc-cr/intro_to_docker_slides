@@ -1,3 +1,4 @@
+% main.tex
 \documentclass{beamer}
 % Include the preamble
 \input{preamble}
@@ -8,108 +9,152 @@
 
 \begin{document}
 
-\frame{\titlepage}
-
-\section{Problem Statement}
-
-\begin{frame}{Problem Statement}
-    \begin{itemize}
-        \item You're on your local laptop with Windows or the latest Ubuntu image 24.04
-        \item Your supervisor asks you to validate the results of some software from another group
-        \item The group emails you their source code and scripts but it turns out it was developed on Ubuntu 14.04 (which released in 2014 and had EOL in April 2024) and does not work on your host PC
-        \item What to do now?
-    \end{itemize}
-    \includegraphics[width=0.8\textwidth]{angry_boss.png}
+\begin{frame}[plain]
+    \titlepage
+    
+    \vfill
+    \begin{center}
+        \small{Source: \href{https://github.com/yourusername/your-repo}{github.com/yourusername/your-repo}}
+    \end{center}
 \end{frame}
 
-\section{Solutions}
+\section{Problem Scenerio}
+
+\begin{frame}{Problem Scenerio}
+    \vspace{-20pt}
+    \begin{columns}[T]
+        \begin{column}{0.6\textwidth}
+            \begin{itemize}
+                \item You're on your local laptop with Windows or the latest Ubuntu image 24.04
+                \item Your supervisor asks you to validate the results of some software from another group
+                \item The group emails you their source code and scripts but it turns out it was developed on Ubuntu 14.04 (which released in 2014 and had EOL in April 2024) and does not work on your host PC
+                \item What to do now?
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.4\textwidth}
+            \includegraphics[height=0.7\textheight,width=\textwidth]{angry_boss.png}
+        \end{column}
+    \end{columns}
+\end{frame}
 
 \begin{frame}{Solutions}
-    \begin{enumerate}
-        \item Setup and configure on some old HDD or SSD
-        \begin{itemize}
-            \item Takes time, hardware
-            \item No guarantee of out-of-box compatibility
-        \end{itemize}
-        \item Boot into VMware with the correct OS
-        \begin{itemize}
-            \item No guarantee of out-of-box compatibility
-            \item Can be pretty slow
-        \end{itemize}
-        \item Use Docker
-        \begin{itemize}
-            \item Quick setup
-            \item Consistent environment across different machines
-            \item Lightweight compared to VMs
-        \end{itemize}
-    \end{enumerate}
-    \includegraphics[width=0.8\textwidth]{docker_anime.png}
+
+    \vspace{-20pt}
+    \begin{columns}[T]
+        \begin{column}{0.6\textwidth}
+            \begin{enumerate}
+                \item Setup and configure on some old HDD or SSD
+                \begin{itemize}
+                    \item Takes time, hardware
+                    \item No guarantee of out-of-box compatibility
+                \end{itemize}
+                \item Boot into VMware with the correct OS
+                \begin{itemize}
+                    \item No guarantee of out-of-box compatibility
+                    \item Can be pretty slow
+                \end{itemize}
+                \item Use Docker
+                \begin{itemize}
+                    \item Quick setup
+                    \item Consistent environment across different machines
+                    \item Lightweight compared to VMs
+                \end{itemize}
+            \end{enumerate}
+        \end{column}
+        \begin{column}{0.4\textwidth}
+            \includegraphics[height=0.8\textheight,width=\textwidth]{docker_anime.png}
+        \end{column}
+    \end{columns}
 \end{frame}
 
 \section{Docker Background}
 
 \begin{frame}{Docker Background}
-    \begin{itemize}
-        \item Launched in 2013
-        \item Open-source platform for containerization
-        \item Allows applications to run in isolated environments called containers
-        \item Uses host OS kernel, making it more efficient than VMs
-    \end{itemize}
-    \includegraphics[width=0.8\textwidth]{timeline.png}
+
+    \begin{columns}[T]
+        \begin{column}{0.4\textwidth}
+            \begin{itemize}
+                \item Launched in 2013
+                \item Open-source platform for containerization
+                \item Allows applications to run in isolated environments called containers
+                \item Uses host OS kernel, making it more efficient than VMs
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.6\textwidth}
+            \includegraphics[height=0.85\textheight,width=\textwidth]{timeline.png}
+        \end{column}
+    \end{columns}
 \end{frame}
 
 \section{Benefits of Docker}
 
 \begin{frame}{Benefits of Docker}
-    \begin{itemize}
-        \item Consistency across development, testing, and production environments
-        \item Faster deployment and scaling
-        \item Better resource utilization compared to VMs
-        \item Simplified dependency management
-        \item Easier application isolation and security
-        \item Avoid problem of "it runs on my machine"
-    \end{itemize}
-    \includegraphics[width=0.8\textwidth]{diagram.png}
+
+    \begin{columns}[T]
+        \begin{column}{0.4\textwidth}
+            \begin{itemize}
+                \item Avoid the problem of "it runs on my machine"
+                \item Faster deployment and scaling
+                \item Better resource utilization compared to VMs
+                \item Simplified dependency management
+                \item Easier application isolation and security
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.6\textwidth}
+            \includegraphics[height=0.5\textheight,width=\textwidth]{diagram.png}
+        \end{column}
+    \end{columns}
 \end{frame}
 
-\section{Docker Architecture}
-
 \begin{frame}{Docker Architecture}
-    \begin{itemize}
-        \item Docker Engine: Core component that builds and runs containers
-        \item Docker Client: CLI tool for interacting with Docker
-        \item Docker Daemon: Background service managing Docker objects
-        \item Docker Registry: Storage for Docker images (e.g., Docker Hub)
-        \item Docker Objects: Images, containers, networks, volumes
-    \end{itemize}
-    \includegraphics[width=0.8\textwidth]{taxonomy.png}
+    \begin{minipage}[t][0.6\textheight][t]{\textwidth}
+        \begin{itemize}
+            \item Docker Engine: Core component that builds and runs containers
+            \item Docker Client: CLI tool for interacting with Docker
+            \item Docker Daemon: Background service managing Docker objects
+            \item Docker Registry: Storage for Docker images (e.g., Docker Hub)
+            \item Docker Objects: Images, containers, networks, volumes
+        \end{itemize}
+    \end{minipage}
+
+    \vspace{-50pt} 
+
+    \begin{center}
+        \includegraphics[height=0.48\textheight,width=\textwidth]{taxonomy.png}
+    \end{center}
 \end{frame}
 
 \section{Important File Types}
 
 \begin{frame}{Important File Types}
-    \begin{itemize}
-        \item Dockerfile (Dockerfile)
+    \begin{minipage}[t][0.6\textheight][t]{\textwidth}
         \begin{itemize}
-            \item Defines a single container
-            \item Used to build custom images
+            \item Dockerfile (Dockerfile)
+            \begin{itemize}
+                \item Defines a single container
+                \item Used to build custom images
+            \end{itemize}
+            \item Docker Compose (docker-compose.yaml)
+            \begin{itemize}
+                \item Orchestrates multiple containers
+                \item Manages application-wide settings and networking
+            \end{itemize}
         \end{itemize}
-        \item Docker Compose (docker-compose.yaml)
-        \begin{itemize}
-            \item Orchestrates multiple containers
-            \item Manages application-wide settings and networking
-        \end{itemize}
-        \item Docker ignore (.dockerignore)
-        \begin{itemize}
-            \item Specifies files to be excluded from the build context
-        \end{itemize}
-    \end{itemize}
-    \includegraphics[width=0.8\textwidth]{workflow.png}
+    \end{minipage}
+
+    \vspace{-55pt}
+
+    \begin{center}
+        \includegraphics[height=0.5\textheight,width=\textwidth]{workflow.png}
+    \end{center}
 \end{frame}
+
 
 \section{Docker Commands}
 
 \begin{frame}{Docker Commands}
+
+    \vspace{-20pt}
     \begin{itemize}
         \item \texttt{docker build}: Build an image from a Dockerfile
         \item \texttt{docker run}: Create and start a container from an image
@@ -126,6 +171,8 @@
 \section{Docker Compose Commands}
 
 \begin{frame}{Docker Compose Commands}
+
+    \vspace{-20pt}
     \begin{itemize}
         \item \texttt{docker-compose up}: Create and start containers
         \item \texttt{docker-compose down}: Stop and remove containers, networks, images, and volumes
@@ -139,14 +186,17 @@
 \section{Example: Python Development}
 
 \begin{frame}[fragile]{Example: Python Development}
+
+    \vspace{-20pt}
     \begin{itemize}
+        \item Github repository: \href{https://github.com/jc-cr/python_dev_docker}{https:\slash\slash github.com\slash jc-cr\slash python\_dev\_docker}
         \item Directory structure:
     \end{itemize}
     \includegraphics[width=0.8\textwidth]{py_dir_struct.png}
 \end{frame}
 
 \begin{frame}[fragile]{Dockerfile}
-    \begin{verbatim}
+            \begin{lstlisting}[style=docker]
 # Use an official Python runtime as a parent image
 FROM python:3.8.19-bookworm
 
@@ -170,25 +220,40 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Run main.py when the container launches
 CMD ["python", "main.py"]
-    \end{verbatim}
+            \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]{docker-compose.yaml}
-    \begin{verbatim}
+            \begin{lstlisting}[style=yaml]
 version: '3'
 services:
   python_plotting_script:
     build: ./common_stat_distributions_figs
     volumes:
       - ./program_outputs:/container_workspace/program_outputs
-    \end{verbatim}
+            \end{lstlisting}
 \end{frame}
 
-\begin{frame}{Building and Running}
+\begin{frame}{Building}
+    \begin{minipage}[t][0.6\textheight][t]{\textwidth}
+        \begin{itemize}
+            \item docker-compose build
+        \end{itemize}
+    \end{minipage}
+
+    \vspace{-120pt}
+
+    \begin{center}
+        \item \includegraphics[width=0.9\textwidth, height=0.5\textheight]{py_build.png} 
+    \end{center}
+
+\end{frame}
+
+
+\begin{frame}{Running}
+    \vspace{-20pt}
     \begin{itemize}
-        \item Building:
-        \includegraphics[width=0.8\textwidth]{py_build.png} 
-        \item Running:
+        \item dcoker-compose up
         \includegraphics[width=0.8\textwidth]{py_run.png}
         \item What if I try to run locally?
         \includegraphics[width=0.8\textwidth]{py_fail.png}
