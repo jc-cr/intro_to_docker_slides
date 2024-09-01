@@ -1,0 +1,15 @@
+version: '3'
+services:
+  latex:
+    build: .
+    volumes:
+      - ./src:/container_workspace/src
+      - ./output:/container_workspace/output
+      - ./media:/container_workspace/media
+      - texmf-data:/usr/local/texlive
+    ports:
+      - "3000:3000"  # For LaTeX Workshop
+    working_dir: /container_workspace/src
+    command: tail -f /dev/null
+volumes:
+  texmf-data:

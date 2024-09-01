@@ -1,0 +1,198 @@
+\documentclass{beamer}
+% Include the preamble
+\input{preamble}
+
+\title{Docker: An Introduction}
+\author{JC Cruz}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\section{Problem Statement}
+
+\begin{frame}{Problem Statement}
+    \begin{itemize}
+        \item You're on your local laptop with Windows or the latest Ubuntu image 24.04
+        \item Your supervisor asks you to validate the results of some software from another group
+        \item The group emails you their source code and scripts but it turns out it was developed on Ubuntu 14.04 (which released in 2014 and had EOL in April 2024) and does not work on your host PC
+        \item What to do now?
+    \end{itemize}
+    \includegraphics[width=0.8\textwidth]{angry_boss.png}
+\end{frame}
+
+\section{Solutions}
+
+\begin{frame}{Solutions}
+    \begin{enumerate}
+        \item Setup and configure on some old HDD or SSD
+        \begin{itemize}
+            \item Takes time, hardware
+            \item No guarantee of out-of-box compatibility
+        \end{itemize}
+        \item Boot into VMware with the correct OS
+        \begin{itemize}
+            \item No guarantee of out-of-box compatibility
+            \item Can be pretty slow
+        \end{itemize}
+        \item Use Docker
+        \begin{itemize}
+            \item Quick setup
+            \item Consistent environment across different machines
+            \item Lightweight compared to VMs
+        \end{itemize}
+    \end{enumerate}
+    \includegraphics[width=0.8\textwidth]{docker_anime.png}
+\end{frame}
+
+\section{Docker Background}
+
+\begin{frame}{Docker Background}
+    \begin{itemize}
+        \item Launched in 2013
+        \item Open-source platform for containerization
+        \item Allows applications to run in isolated environments called containers
+        \item Uses host OS kernel, making it more efficient than VMs
+    \end{itemize}
+    \includegraphics[width=0.8\textwidth]{timeline.png}
+\end{frame}
+
+\section{Benefits of Docker}
+
+\begin{frame}{Benefits of Docker}
+    \begin{itemize}
+        \item Consistency across development, testing, and production environments
+        \item Faster deployment and scaling
+        \item Better resource utilization compared to VMs
+        \item Simplified dependency management
+        \item Easier application isolation and security
+        \item Avoid problem of "it runs on my machine"
+    \end{itemize}
+    \includegraphics[width=0.8\textwidth]{diagram.png}
+\end{frame}
+
+\section{Docker Architecture}
+
+\begin{frame}{Docker Architecture}
+    \begin{itemize}
+        \item Docker Engine: Core component that builds and runs containers
+        \item Docker Client: CLI tool for interacting with Docker
+        \item Docker Daemon: Background service managing Docker objects
+        \item Docker Registry: Storage for Docker images (e.g., Docker Hub)
+        \item Docker Objects: Images, containers, networks, volumes
+    \end{itemize}
+    \includegraphics[width=0.8\textwidth]{taxonomy.png}
+\end{frame}
+
+\section{Important File Types}
+
+\begin{frame}{Important File Types}
+    \begin{itemize}
+        \item Dockerfile (Dockerfile)
+        \begin{itemize}
+            \item Defines a single container
+            \item Used to build custom images
+        \end{itemize}
+        \item Docker Compose (docker-compose.yaml)
+        \begin{itemize}
+            \item Orchestrates multiple containers
+            \item Manages application-wide settings and networking
+        \end{itemize}
+        \item Docker ignore (.dockerignore)
+        \begin{itemize}
+            \item Specifies files to be excluded from the build context
+        \end{itemize}
+    \end{itemize}
+    \includegraphics[width=0.8\textwidth]{workflow.png}
+\end{frame}
+
+\section{Docker Commands}
+
+\begin{frame}{Docker Commands}
+    \begin{itemize}
+        \item \texttt{docker build}: Build an image from a Dockerfile
+        \item \texttt{docker run}: Create and start a container from an image
+        \item \texttt{docker pull}: Download an image from a registry
+        \item \texttt{docker push}: Upload an image to a registry
+        \item \texttt{docker ps}: List running containers
+        \item \texttt{docker images}: List available images
+        \item \texttt{docker stop}: Stop a running container
+        \item \texttt{docker rm}: Remove a container
+        \item \texttt{docker rmi}: Remove an image
+    \end{itemize}
+\end{frame}
+
+\section{Docker Compose Commands}
+
+\begin{frame}{Docker Compose Commands}
+    \begin{itemize}
+        \item \texttt{docker-compose up}: Create and start containers
+        \item \texttt{docker-compose down}: Stop and remove containers, networks, images, and volumes
+        \item \texttt{docker-compose build}: Build or rebuild services
+        \item \texttt{docker-compose ps}: List containers
+        \item \texttt{docker-compose logs}: View output from containers
+        \item \texttt{docker-compose exec}: Run commands in a running container
+    \end{itemize}
+\end{frame}
+
+\section{Example: Python Development}
+
+\begin{frame}[fragile]{Example: Python Development}
+    \begin{itemize}
+        \item Directory structure:
+    \end{itemize}
+    \includegraphics[width=0.8\textwidth]{py_dir_struct.png}
+\end{frame}
+
+\begin{frame}[fragile]{Dockerfile}
+    \begin{verbatim}
+# Use an official Python runtime as a parent image
+FROM python:3.8.19-bookworm
+
+# Avoid prompts from apt
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Set the working directory in the container
+WORKDIR /container_workspace
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    gcc \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy the current directory contents into the container
+COPY . /container_workspace/
+
+# Install any needed packages specified in requirements.txt
+COPY requirements.txt /container_workspace/
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Run main.py when the container launches
+CMD ["python", "main.py"]
+    \end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{docker-compose.yaml}
+    \begin{verbatim}
+version: '3'
+services:
+  python_plotting_script:
+    build: ./common_stat_distributions_figs
+    volumes:
+      - ./program_outputs:/container_workspace/program_outputs
+    \end{verbatim}
+\end{frame}
+
+\begin{frame}{Building and Running}
+    \begin{itemize}
+        \item Building:
+        \includegraphics[width=0.8\textwidth]{py_build.png} 
+        \item Running:
+        \includegraphics[width=0.8\textwidth]{py_run.png}
+        \item What if I try to run locally?
+        \includegraphics[width=0.8\textwidth]{py_fail.png}
+    \end{itemize}
+\end{frame}
+
+\end{document}

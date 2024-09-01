@@ -1,0 +1,25 @@
+# LaTeX temporary files
+*.aux
+*.log
+*.toc
+*.lof
+*.lot
+*.out
+*.synctex.gz
+
+# PDF output (if you don't want to track it)
+# *.pdf
+
+# Output directory (except .gitkeep)
+output/*
+!output/.gitkeep
+
+# TeX Live data
+texmf-data/
+
+# VS Code settings (if you don't want to track them)
+# .vscode/
+
+# OS generated files
+.DS_Store
+Thumbs.db
